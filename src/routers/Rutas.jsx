@@ -22,7 +22,6 @@ import QuienesSomos from "../views/QuienesSomos";
 import TerminosCondiciones from "../views/TerminosCondiciones";
 import AvisosPrivacidad from "../views/AvisosPrivacidad";
 import PasswordReset from "../views/PasswordReset";
-import Carrito from "../views/Carrito.jsx";
 
 /*PRODUCTOS CLIENTE*/
 import Productos from '../views/Productos';
@@ -30,9 +29,19 @@ import Categorias from "../views/Categorias.jsx";
 import ResenaProducto from "../views/ResenaProducto.jsx";
 
 /*ADMINISTRADOR*/
+
 import IniciarSesion from "../ViewsAdmin/IniciarSesion";
 import AdminProductos from "../ViewsAdmin/AdminProductos";
 import AdminCategorias from "../ViewsAdmin/AdminCategorias";
+import RevenuePrediction from "../ViewsAdmin/problema.jsx";
+import PanelAdmin from "../ViewsAdmin/PanelAdmin.jsx";
+import AdminEmpleado from "../ViewsAdmin/AdminEmpleado.jsx";
+import AdminVentas from "../ViewsAdmin/AdminVentas.jsx";
+import AdminPedidos from "../ViewsAdmin/AdminPedidos.jsx";
+import AdminPagina from "../ViewsAdmin/AdminPagina.jsx";
+
+import Carrito from "../views/Carrito.jsx";
+import Pedido from "../views/Pedido.jsx";
 export const Rutas = createBrowserRouter([
     {
         path: "/Inicio",
@@ -128,28 +137,63 @@ export const Rutas = createBrowserRouter([
         element: <AvisosPrivacidad/>
     },
     {
-        path: "/carrito",
+        path: "/",
+        element: <Bienvenida/>,
+        errorElement: <Error404/>,
+    },
+    {
+        path: "/Carrito",
         element: <Carrito/>,
         errorElement: <Error404/>,
     },
     {
-        path: "/",
-        element: <Bienvenida/>,
+        path: "/Pedidos",
+        element: <Pedido/>,
         errorElement: <Error404/>,
     },
     ///////////////Rutas del Admin//////////////////////
     {
         path: "/login-admin",
         element: <IniciarSesion/>,
+        errorElement: <Error404/>
     },
     {
-        path:"/admin-productos",
+        path:"/PanelAdmin",
+        element:<ProtectorRutasPrivadas Page={PanelAdmin}/>
+    },
+    {
+        path:"/AdminProductos",
         element: <ProtectorRutasPrivadas Page={AdminProductos}/>,
+        errorElement: <Error404/>,
     },
     {
-        path:"/admin-categorias",
+        path:"/AdminCategorias",
         element: <ProtectorRutasPrivadas Page={AdminCategorias}/>
                         
+    },
+    {
+        path:"/AdminEmpleados",
+        element: <ProtectorRutasPrivadas Page={AdminEmpleado}/>
+                        
+    },
+    {
+        path:"/AdminVentas",
+        element: <ProtectorRutasPrivadas Page={AdminVentas}/>
+                        
+    },
+    {
+        path:"/AdminPedidos",
+        element: <ProtectorRutasPrivadas Page={AdminPedidos}/>
+                        
+    },
+    {
+        path:"/AdminPagina",
+        element: <ProtectorRutasPrivadas Page={AdminPagina}/>
+                        
+    },
+    {
+        path:"/problema",
+        element: <RevenuePrediction/>
     }
 ]);
 
