@@ -2,14 +2,19 @@ import React, { useState, useEffect } from 'react'
 import '../css/componentes-inicio.css'
 import { Icon } from "@iconify/react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from '../context/AuthContext.jsx';
 
 import MigasPan from '../views/MigasPan.jsx';
+import { IconoUsuarioG, IconoUsuarioC } from './IconoUsuario.jsx';
 
 /* Este es el header o encabezado del inicio */
 export const HeaderInicio = () => {
     /* El código const [isSidebarOpen, setIsSidebarOpen] = useState(false); crea un estado llamado isSidebarOpen con el valor inicial de false. 
         Esto significa que el sidebar estará cerrado de forma predeterminada. */
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const { user } = useAuth();
+
 
     // Función para manejar el cambio de tamaño de la ventana
     const handleResize = () => {
@@ -43,15 +48,34 @@ export const HeaderInicio = () => {
                 </div>
 
                 <div className='w-full flex justify-end mr-3 md:mr-14 h-auto'>
-                    <BotonPersonalizable estilos={"w-auto h-auto pr-2"} url={"/login"} titulo={"Iniciar sesión"} estiloTexto={"text-white Login w-28 h-9 grid place-items-center"} />
-                    <BotonPersonalizable estilos={"w-auto h-auto pl-2"} url={"/registro"} titulo={"Registro"} estiloTexto={"text-white Registro w-28 h-9 grid place-items-center"} />
+
+
+                    <div className='md:flex block'>
+                        {user ? (
+                            <div className='flex text-xl font-bold text-blue-500 items-center'>
+                                <Icon icon="mdi:circle" className='bg-green-500 rounded-full text-green-500 size-3 mr-1.5'/> Bienvenido, {user.Nombre}!
+                            </div>
+                        ) : (
+                            <div className='flex mr-3'>
+                                <BotonPersonalizable estilos={"w-auto h-auto pr-2"} url={"/login"} titulo={"Iniciar sesión"} estiloTexto={"text-white Login w-28 h-9 grid place-items-center"} />
+                                <BotonPersonalizable estilos={"w-auto h-auto pl-2"} url={"/registro"} titulo={"Registro"} estiloTexto={"text-white Registro w-28 h-9 grid place-items-center"} />
+                            </div>
+                        )}
+                    </div>
 
                     <div className='flex items-center'>
-                        <NavLink to="">
-                            <Icon icon="mdi:account-circle" className='text-black size-8 mx-8' />
-                        </NavLink>
 
-                        <NavLink to="">
+                        {user ? (
+                            <div className='md:flex block items-center'>
+                                <IconoUsuarioG />
+                            </div>
+                        ) : (
+                            <div className='flex mr-3 items-center'>
+                                <IconoUsuarioC />
+                            </div>  
+                        )}
+
+                        <NavLink to="/carrito">
                             <Icon icon="mdi:cart-outline" className='text-black size-8' />
                         </NavLink>
                     </div>

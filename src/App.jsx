@@ -2,6 +2,7 @@ import React from "react";
 import './css/App.css';
 import { Helmet } from "react-helmet-async";
 import Bienvenida from "./views/Bienvenida.jsx"
+
 const App = () => {
   return (
     <div className="container-app">
@@ -17,6 +18,7 @@ const App = () => {
             object-src 'none';
             frame-src 'self' https://www.google.com;
             font-src 'self' https://fonts.gstatic.com;
+            img-src 'self' https://firebasestorage.googleapis.com
             `}
         ></meta>
       </Helmet>

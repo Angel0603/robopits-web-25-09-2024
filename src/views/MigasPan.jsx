@@ -6,7 +6,7 @@ import axios from 'axios';
 const MigasPan = () => {
   const [productos, setProductos] = useState([]);
 
-  const URL = "https://prueba1-pied-seven.vercel.app/api/productos";
+  const URL = "https://backend-robo.vercel.app/api/productos";
 
   const showData = async () => {
     try {

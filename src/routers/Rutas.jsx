@@ -33,12 +33,6 @@ import ResenaProducto from "../views/ResenaProducto.jsx";
 import IniciarSesion from "../ViewsAdmin/IniciarSesion";
 import AdminProductos from "../ViewsAdmin/AdminProductos";
 import AdminCategorias from "../ViewsAdmin/AdminCategorias";
-import RevenuePrediction from "../ViewsAdmin/problema.jsx";
-import PanelAdmin from "../ViewsAdmin/PanelAdmin.jsx";
-import AdminEmpleado from "../ViewsAdmin/AdminEmpleado.jsx";
-import AdminVentas from "../ViewsAdmin/AdminVentas.jsx";
-import AdminPedidos from "../ViewsAdmin/AdminPedidos.jsx";
-import AdminPagina from "../ViewsAdmin/AdminPagina.jsx";
 
 import Carrito from "../views/Carrito.jsx";
 import Pedido from "../views/Pedido.jsx";
@@ -60,7 +54,7 @@ export const Rutas = createBrowserRouter([
         element: <RestablecerContrasena/>
     },
     {
-        path:"/PasswordReset",
+        path:"/passwordReset",
         element: <PasswordReset/>
     },
 
@@ -158,10 +152,6 @@ export const Rutas = createBrowserRouter([
         errorElement: <Error404/>
     },
     {
-        path:"/PanelAdmin",
-        element:<ProtectorRutasPrivadas Page={PanelAdmin}/>
-    },
-    {
         path:"/AdminProductos",
         element: <ProtectorRutasPrivadas Page={AdminProductos}/>,
         errorElement: <Error404/>,
@@ -171,30 +161,7 @@ export const Rutas = createBrowserRouter([
         element: <ProtectorRutasPrivadas Page={AdminCategorias}/>
                         
     },
-    {
-        path:"/AdminEmpleados",
-        element: <ProtectorRutasPrivadas Page={AdminEmpleado}/>
-                        
-    },
-    {
-        path:"/AdminVentas",
-        element: <ProtectorRutasPrivadas Page={AdminVentas}/>
-                        
-    },
-    {
-        path:"/AdminPedidos",
-        element: <ProtectorRutasPrivadas Page={AdminPedidos}/>
-                        
-    },
-    {
-        path:"/AdminPagina",
-        element: <ProtectorRutasPrivadas Page={AdminPagina}/>
-                        
-    },
-    {
-        path:"/problema",
-        element: <RevenuePrediction/>
-    }
+
 ]);
 
 

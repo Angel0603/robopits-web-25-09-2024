@@ -137,6 +137,7 @@ const Registro = () => {
             object-src 'none';
             frame-src 'self' https://www.google.com;
             font-src 'self' https://fonts.gstatic.com;
+            img-src 'self' https://firebasestorage.googleapis.com
             `}
         ></meta>
       </Helmet>
