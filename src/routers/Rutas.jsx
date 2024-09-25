@@ -22,10 +22,14 @@ import QuienesSomos from "../views/QuienesSomos";
 import TerminosCondiciones from "../views/TerminosCondiciones";
 import AvisosPrivacidad from "../views/AvisosPrivacidad";
 import PasswordReset from "../views/PasswordReset";
+import Carrito from "../views/Carrito.jsx";
+import Pedido from "../views/Pedido.jsx";
+import Perfil from "../views/Perfil.jsx";
 
 /*PRODUCTOS CLIENTE*/
 import Productos from '../views/Productos';
 import Categorias from "../views/Categorias.jsx";
+import ProductosPorCategoria from "../views/ProductosPorCategoria.jsx";
 import ResenaProducto from "../views/ResenaProducto.jsx";
 
 /*ADMINISTRADOR*/
@@ -33,9 +37,13 @@ import ResenaProducto from "../views/ResenaProducto.jsx";
 import IniciarSesion from "../ViewsAdmin/IniciarSesion";
 import AdminProductos from "../ViewsAdmin/AdminProductos";
 import AdminCategorias from "../ViewsAdmin/AdminCategorias";
+import RevenuePrediction from "../ViewsAdmin/problema.jsx";
+import PanelAdmin from "../ViewsAdmin/PanelAdmin.jsx";
+import AdminEmpleado from "../ViewsAdmin/AdminEmpleado.jsx";
+import AdminVentas from "../ViewsAdmin/AdminVentas.jsx";
+import AdminPedidos from "../ViewsAdmin/AdminPedidos.jsx";
+import AdminPagina from "../ViewsAdmin/AdminPagina.jsx";
 
-import Carrito from "../views/Carrito.jsx";
-import Pedido from "../views/Pedido.jsx";
 export const Rutas = createBrowserRouter([
     {
         path: "/Inicio",
@@ -54,8 +62,12 @@ export const Rutas = createBrowserRouter([
         element: <RestablecerContrasena/>
     },
     {
-        path:"/passwordReset",
+        path:"/PasswordReset",
         element: <PasswordReset/>
+    },
+    {
+        path:"/perfil",
+        element:  <ProtectedRoutes Page={Perfil}/>
     },
 
     /* Rutas del Nav */
@@ -100,20 +112,20 @@ export const Rutas = createBrowserRouter([
         element: <Categorias/>
     },
     {
+        path: "/categoria/:id",
+        element: <ProductosPorCategoria/>
+    },
+    {
         path: "/todos-los-productos",
         element:  <Productos/>
                         
     },
     {
         path: "/resena-producto/:id",
-        element:  <ResenaProducto/>
+        element:  <ProtectedRoutes Page={ResenaProducto}/>
                         
     },
-    {
-        path: "/resena-producto",
-        element:  <Productos/>
-                        
-    },
+
     {
         path: "/preguntas-frecuentes",
         element: <PreguntasFrecuentes/>
@@ -136,13 +148,13 @@ export const Rutas = createBrowserRouter([
         errorElement: <Error404/>,
     },
     {
-        path: "/Carrito",
-        element: <Carrito/>,
+        path: "/carrito",
+        element:  <ProtectedRoutes Page={Carrito}/>,
         errorElement: <Error404/>,
     },
     {
         path: "/Pedidos",
-        element: <Pedido/>,
+        element:  <ProtectedRoutes Page={Pedido}/>,
         errorElement: <Error404/>,
     },
     ///////////////Rutas del Admin//////////////////////
@@ -150,6 +162,10 @@ export const Rutas = createBrowserRouter([
         path: "/login-admin",
         element: <IniciarSesion/>,
         errorElement: <Error404/>
+    },
+    {
+        path:"/PanelAdmin",
+        element:<ProtectorRutasPrivadas Page={PanelAdmin}/>
     },
     {
         path:"/AdminProductos",
@@ -161,7 +177,30 @@ export const Rutas = createBrowserRouter([
         element: <ProtectorRutasPrivadas Page={AdminCategorias}/>
                         
     },
-
+    {
+        path:"/AdminEmpleados",
+        element: <ProtectorRutasPrivadas Page={AdminEmpleado}/>
+                        
+    },
+    {
+        path:"/AdminVentas",
+        element: <ProtectorRutasPrivadas Page={AdminVentas}/>
+                        
+    },
+    {
+        path:"/AdminPedidos",
+        element: <ProtectorRutasPrivadas Page={AdminPedidos}/>
+                        
+    },
+    {
+        path:"/AdminPagina",
+        element: <ProtectorRutasPrivadas Page={AdminPagina}/>
+                        
+    },
+    {
+        path:"/problema",
+        element: <RevenuePrediction/>
+    }
 ]);
 
 

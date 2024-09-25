@@ -1,34 +1,65 @@
-import {instance} from './axios.js'
+import axios from './axios.js'
 
-export const registerRequest = user => instance.post(`/register`, user);
-export const loginRequest = user => instance.post(`/login`, user);
-export const verificarToken = () => instance.get(`/verify`)
-export const forgotPasswordRequest = email => instance.post(`/forgotPassword`, { Email: email });
-export const resetPasswordRequest = (token, Password) => instance.post(`/passwordReset`, { token, Password });
+export const registerRequest = user => axios.post(`/register`, user);
+export const loginRequest = user => axios.post(`/login`, user);
+export const verificarToken = async (token) => {
+  return await axios.get('/verify', {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+};
+export const forgotPasswordRequest = email => axios.post(`/forgorPassword`, { Email: email });
+export const resetPasswordRequest = (token, Password) => axios.post(`/passwordReset`, { token, Password });
 //_____________APIS REALES DEL PROYECTO XD________//
-export const crearEmpleado = user => instance.post(`/registro`, user);
-export const IniciarEmpleado = user => instance.post(`/inicio`, user);
-export const verificarTokenEmpleado = () => instance.get('/verificar')
+export const crearEmpleado = user => axios.post(`/registro`, user);
+export const IniciarEmpleado = user => axios.post(`/inicio`, user);
 
-export const crearCategoria = Categoria => instance.post(`/Categorias`, Categoria);
-export const getAllCategorias = categoria => instance.get(`/Categorias`, categoria);
-export const getCategoria = categoriaId => instance.get(`/Categoria/${categoriaId}`);
-export const eliminarCategoria = categoriaId => instance.delete(`/Categoria/${categoriaId}`);
-export const updateCategoria = (categoriaId, categoriaData) => instance.put(`/Categoria/${categoriaId}`, categoriaData);
+export const verificarTokenEmpleado = async (admin) => {
+return await axios.get('/verificar', {
+  headers: {
+    'Authorization': `Bearer ${admin}`
+  }
+});
+};
 
-export const getAllProductos = Productos => instance.get(`/Productos`, Productos);
-export const crearProducto = Producto => instance.post(`/Productos`, Producto);
-export const getProducto = ProductoId => instance.get(`/Producto/${ProductoId}`);
-export const EliminarProducto = (ProductoId) => {return instance.delete(`/Producto/${ProductoId}`);};
-export const updateProducto = (ProductoId, productoData) => instance.put(`/Producto/${ProductoId}`, productoData);
+export const crearCategoria = Categoria => axios.post(`/Categorias`, Categoria);
+export const getAllCategorias = categoria => axios.get(`/Categorias`, categoria);
+export const getCategoria = categoriaId => axios.get(`/Categoria/${categoriaId}`);
+export const eliminarCategoria = categoriaId => axios.delete(`/Categoria/${categoriaId}`);
+export const updateCategoria = (categoriaId, categoriaData) => axios.put(`/Categoria/${categoriaId}`, categoriaData);
 
-export const agregarAlCarrito = (userId, productId, quantity) => instance.post(`/carritoagregar`, { userId, productId, quantity });
-export const obtenerCarrito = (userId) =>  instance.get(`/carrito/${userId}`);
+export const crearProducto = Producto => axios.post(`/Productos`, Producto);
+export const getAllProductos = Productos => axios.get(`/Productos`, Productos);
+export const obtenerProductosPorCategoria = (categoriaId) => {return axios.get(`/Productos/categoria/${categoriaId}`);};
+export const getProducto = ProductoId => axios.get(`/Producto/${ProductoId}`);
+export const EliminarProducto = (ProductoId) => {return axios.delete(`/Producto/${ProductoId}`);};
+export const updateProducto = (ProductoId, productoData) => axios.put(`/Producto/${ProductoId}`, productoData);
 
-export const agregarPedido = (userId, direccion, descuento) => instance.post(`/crearpedido`, { userId, direccion, descuento });
+export const agregarAlCarrito = (userId, productId, quantity) => axios.post('/carritoagregar', { userId, productId, quantity });
+export const obtenerCarrito = (userId) => axios.get(`/carrito/${userId}`);
+export const decrementarCantidadProducto = (userId, productId) => axios.post('/carrito/decrement', { userId, productId });
+export const eliminarProductoDelCarrito = (userId, productId) => axios.post('/carrito/remove', { userId, productId });
+export const incrementarCantidadProducto = (userId, productId) => axios.post('/carrito/increment', { userId, productId });
+
+export const agregarPedido = (userId, direccion, descuento, telefono) => axios.post('/crearpedido', { userId, direccion, descuento, telefono });
 
 // Ruta para obtener los pedidos del cliente
-export const obtenerPedidosCliente = (userId) => instance.get(`/pedidosCliente/${userId}`);
+export const obtenerPedidosCliente = (userId) => axios.get(`/pedidosCliente/${userId}`);
 
 // Ruta para obtener todos los pedidos (administrador)
-export const obtenerTodosLosPedidos = () => instance.get(`/todosLosPedidos`);
+export const obtenerTodosLosPedidos = () => axios.get('/todosLosPedidos');
+
+//Ver el perfil del usuario
+export const obtenerPerfil = (userId) => {
+  return axios.get(`/perfil/${userId}`);
+};
+//actualizar el perfil del usuario
+export const actualizarPerfil = (userId, perfil) => {
+  return axios.put(`/perfil/${userId}`, perfil);
+};
+
+// Función para actualizar el número de teléfono del usuario
+export const actualizarTelefonoUsuario = (userId, telefono) => {
+  return axios.put(`/actualizar-telefono/${userId}`, { telefono });
+};

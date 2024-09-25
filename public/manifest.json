@@ -21,6 +21,5 @@
   "start_url": ".",
   "display": "standalone",
   "background_color": "#282c34",
-  "theme_color": "#282c34",
-  "description": "A picture of your favorite pupperino"
+  "theme_color": "#282c34"
 }

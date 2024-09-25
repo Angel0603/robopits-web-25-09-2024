@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ChatBot from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
-import '../css/RoboChat.css';
 const theme = {
     headerBgColor: '#2587eb',
     headerFontColor: '#fff',

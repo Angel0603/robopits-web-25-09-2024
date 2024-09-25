@@ -9,9 +9,9 @@ function ProtectedRoutes({Page}) {
     if(loading) return <h1>Cargando ...</h1>;
 
     if(!loading && !isAuthenticated) return <Navigate to='/login' replace/>
-
     
   return <Page />
 }
+
 
 export default ProtectedRoutes
