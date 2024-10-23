@@ -1,0 +1,46 @@
+name: App web acutomatizacion CI/CD Workflow 
+
+on:
+  push:
+    branches:
+      - main       # El workflow se ejecutará al hacer push en la rama main
+      - develop    # El workflow se ejecutará al hacer push en la rama develop
+      - 'feature/*' # El workflow se ejecutará al hacer push en cualquier rama que siga el formato feature/*
+  pull_request:
+    branches:
+      - main       # Se ejecutará al abrir un pull request hacia la rama main
+      - develop    # Se ejecutará al abrir un pull request hacia la rama develop
+  workflow_dispatch: # Permite ejecutar el flujo de trabajo manualmente desde la interfaz de GitHub
+
+jobs:
+  build:  # Definición del trabajo llamado "build"
+    runs-on: ubuntu-latest  # El trabajo se ejecutará en el sistema operativo Ubuntu
+
+    steps:
+      - name: Checkout code  # Paso para clonar el repositorio en el runner de GitHub
+        uses: actions/checkout@v3  # Acción oficial de GitHub para hacer el checkout del código
+
+      - name: Set up Node.js  # Paso para configurar el entorno de Node.js
+        uses: actions/setup-node@v2  # Acción para configurar Node.js
+        with:
+          node-version: '18'  # Especifica la versión de Node.js a usar (puedes cambiarla según la versión de tu proyecto)
+
+      - name: Cache node modules  # Paso para cachear las dependencias y mejorar el tiempo de ejecución
+        uses: actions/cache@v3  # Acción para manejar el caché
+        with:
+          path: ~/.npm  # Ruta donde se encuentran las dependencias de Node.js
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}  # Clave única basada en el sistema operativo y el archivo package-lock.json
+          restore-keys: |
+            ${{ runner.os }}-node-  # Claves adicionales para intentar restaurar un caché anterior
+
+      - name: Install dependencies  # Paso para instalar las dependencias del proyecto
+        run: npm install  # Comando para instalar todas las dependencias listadas en package.json
+
+      - name: Build the project  # Paso para compilar el proyecto
+        run: npm run build  # Comando para construir la aplicación (usualmente crea una carpeta dist o build)
+
+      - name: Run unit tests  # Paso para ejecutar las pruebas unitarias
+        run: npm test -- --coverage  # Ejecuta las pruebas y genera un reporte de cobertura
+
+      - name: Run linter  # Paso para ejecutar el linter y verificar la calidad del código
+        run: npm run lint  # Comando para ejecutar el linter (eslint, por ejemplo, configurado en el proyecto)
