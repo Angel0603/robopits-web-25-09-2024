@@ -14,7 +14,7 @@ const IniciarSesion = () => {
     formState: { errors }
   } = useForm()
 
-  const {signinEmpleado,isEmpleadoAuthenticated, errors : loginErrors} =  useAuth();
+  const {signinEmpleado,isEmpleadoAuthenticated} =  useAuth();
   const navigate = useNavigate()
 
   const onSubmit = handleSubmit(data => {

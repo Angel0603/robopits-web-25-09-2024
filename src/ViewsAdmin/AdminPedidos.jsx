@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { obtenerTodosLosPedidos } from '../api/auth.js';
-import { EncabezadoAdmin, BotonMenu } from './ComponenetesAdmin/Encabezado'
+import { EncabezadoAdmin } from './ComponenetesAdmin/Encabezado'
 
 function AdminPedidos() {
   const [pedidos, setPedidos] = useState([]);
