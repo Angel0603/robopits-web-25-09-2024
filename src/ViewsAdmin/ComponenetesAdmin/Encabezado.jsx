@@ -1,5 +1,5 @@
 import { useAuth } from "../../context/AuthContext.jsx";
-import { Navigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 export function EncabezadoAdmin() {
   const { logoutEmpleado, empleado } = useAuth();
 
