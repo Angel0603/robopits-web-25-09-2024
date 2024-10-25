@@ -111,6 +111,7 @@ const ResenaProducto = () => {
                                         </div>
 
                                         <div className="flex space-x-2 mt-4 md:w-full w-auto">
+                                         {/* implementar método de pago */}
                                             <button type="submit" className="bg-[#3BA4F6] text-white rounded p-2 font-bold md:w-44 w-auto hover:bg-[#2587eb]">Comprar ahora</button>
                                             <button type="button" onClick={handleAgregarAlCarrito} className="bg-[#4db4b2] text-white rounded p-2 font-bold md:w-44 w-auto hover:bg-[#329696]">Agregar al carrito</button>
                                         </div>
