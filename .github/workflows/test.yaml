@@ -3,9 +3,9 @@ name: App web acutomatizacion CI/CD Workflow
 on:
   push:
     branches:
-      - main       # El workflow se ejecutará al hacer push en la rama main
-      - develop    # El workflow se ejecutará al hacer push en la rama develop
-      - 'feature/*' # El workflow se ejecutará al hacer push en cualquier rama que siga el formato feature/*
+      - main       
+      - develop    
+      - 'feature/*' 
   pull_request:
     branches:
       - main       # Se ejecutará al abrir un pull request hacia la rama main
